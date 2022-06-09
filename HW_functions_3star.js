@@ -26,6 +26,7 @@ const checkAge = function(age) {
 } else {console.log("Not integer value")}
 }
 
-checkAge (17)
+checkAge (61)
 checkAge ('55')
 checkAge ('2privet')
+checkAge ('2')
