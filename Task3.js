@@ -159,6 +159,15 @@ console.log(getEnterpriseByDepartment("Отдел разработки"))
   
 // Пример:
 //   addEnterprise("Название нового предприятия")
+
+const addEnterprise = function(name) {
+  enterprises.push ({
+    id: getNewId(enterprises),
+    name : name,
+    departments : []
+  })
+}
+addEnterprise('Бухгалтерия')
   
 // 4. Написать функцию, которая будет добавлять отдел в предприятие. В качестве аргумента принимает id предприятия, в которое будет добавлен отдел и название отдела.
   
