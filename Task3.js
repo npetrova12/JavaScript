@@ -102,19 +102,6 @@ const employeesCountHelper = function(number) {
 //   Задания:
 //   1. Вывести все предприятия и их отделы. Рядом указать количество сотрудников. Для предприятия посчитать сумму всех сотрудников во всех отделах.
   
-//   **Пример:**
-  
-//   Предприятие 1 (45 сотрудников)
-//   - Отдел тестирования (10 сотрудников)
-//   - Отдел маркетинга (20 сотрудников)
-//   - Администрация (15 человек)
-//   Предприятие 2 (75 сотрудников)
-//   - Отдел разработки (50 сотрудников)
-//   - Отдел маркетинга (20 сотрудников)
-//   - Отдел охраны труда (5 сотрудников)
-//   Предприятие 3 (нет сотрудников)
-//   - Отдел аналитики (нет сотрудников)
-
 const getDepartments = function (companies) {
     companies.forEach((company) => {
         let depts = [];
@@ -136,7 +123,6 @@ const getDepartments = function (companies) {
 }
 getDepartments(enterprises)
 
-
 // 2. Написать функцию, которая будет принимать 1 аргумент (id отдела или название отдела и возвращать название предприятия, к которому относится).
   
 const getEnterpriseByDepartment = function(val) {
@@ -154,12 +140,8 @@ const getEnterpriseByDepartment = function(val) {
 }
 console.log(getEnterpriseByDepartment("Отдел разработки"))
 
-  
 // 3. Написать функцию, которая будет добавлять предприятие. В качестве аргумента принимает название предприятия
   
-// Пример:
-//   addEnterprise("Название нового предприятия")
-
 const addEnterprise = function(name) {
   enterprises.push ({
     id: getNewId(enterprises),
@@ -167,12 +149,23 @@ const addEnterprise = function(name) {
     departments : []
   })
 }
-addEnterprise('Бухгалтерия')
+addEnterprise('Тестировщки')
   
 // 4. Написать функцию, которая будет добавлять отдел в предприятие. В качестве аргумента принимает id предприятия, в которое будет добавлен отдел и название отдела.
   
-// Пример:
-//   addDepartment(1, "Название нового отдела")
+const addDepartment = function(id, name, employees_count = 0) {
+  const enterprise = getEnterprise(id)
+  if(typeof enterprise === "object") {
+      enterprise.departments.push({
+          id: getNewId(enterprises),
+          name: name,
+          employees_count: employees_count,
+      })
+  } else console.log("Нет такой организации")
+}
+addDepartment(11,"AQA", 20)
+addDepartment(11,"Ручные тестировщики", 20)
+console.log(getEnterprise(11))
   
 // 5. Написать функцию для редактирования названия предприятия. Принимает в качестве аргумента id предприятия и новое имя предприятия.
   
