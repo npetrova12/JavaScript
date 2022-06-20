@@ -90,6 +90,15 @@ const getNewId = function(company) {
 return maxId + 1;
 }
 
+const employeesCountHelper = function(number) {
+  number = number.toString().split('').pop()
+  if (number) {
+      if (number == 1) return "сотрудник"
+      else if (number > 1 && number < 5) return "сотрудника"
+      else return "сотрудников"
+  } else return "(нет сотрудников)"
+};
+
 //   Задания:
 //   1. Вывести все предприятия и их отделы. Рядом указать количество сотрудников. Для предприятия посчитать сумму всех сотрудников во всех отделах.
   
@@ -105,15 +114,6 @@ return maxId + 1;
 //   - Отдел охраны труда (5 сотрудников)
 //   Предприятие 3 (нет сотрудников)
 //   - Отдел аналитики (нет сотрудников)
-
-const employeesCountHelper = function(number) {
-    number = number.toString().split('').pop()
-    if (number) {
-        if (number == 1) return "сотирудник"
-        else if (number > 1 && number < 5) return "сотрудника"
-        else return "сотрудников"
-    } else return "(нет сотрудников)"
-};
 
 const getDepartments = function (companies) {
     companies.forEach((company) => {
@@ -139,9 +139,21 @@ getDepartments(enterprises)
 
 // 2. Написать функцию, которая будет принимать 1 аргумент (id отдела или название отдела и возвращать название предприятия, к которому относится).
   
-// Пример:
-//   getEnterpriseName(4) // Предприятие 1
-//   getEnterpriseName("Отдел маркетинга") // Предприятие 2
+const getEnterpriseByDepartment = function(val) {
+  let enterprise
+  enterprises.forEach(ent => {
+      let department
+      if(ent.departments) {
+          department = ent.departments.find(dept => { return dept.id == val || dept.name == val})
+      }
+      if(department) {
+          enterprise = ent
+      }
+  })
+  return enterprise ? enterprise : "Нет организации с таким отделом"
+}
+console.log(getEnterpriseByDepartment("Отдел разработки"))
+
   
 // 3. Написать функцию, которая будет добавлять предприятие. В качестве аргумента принимает название предприятия
   
