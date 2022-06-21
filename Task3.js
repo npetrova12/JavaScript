@@ -93,10 +93,10 @@ return maxId + 1;
 const employeesCountHelper = function(number) {
   number = number.toString().split('').pop()
   if (number) {
-      if (number == 1) return "сотрудник"
-      else if (number > 1 && number < 5) return "сотрудника"
-      else return "сотрудников"
-  } else return "(нет сотрудников)"
+      if (number == 1) return 'сотрудник'
+      else if (number > 1 && number < 5) return 'сотрудника'
+      else return 'сотрудников'
+  } else return '(нет сотрудников)'
 };
 
 //   Задания:
@@ -136,9 +136,9 @@ const getEnterpriseByDepartment = function(val) {
           enterprise = ent
       }
   })
-  return enterprise ? enterprise : "Нет организации с таким отделом"
+  return enterprise ? enterprise : 'Нет организации с таким отделом'
 }
-console.log(getEnterpriseByDepartment("Отдел разработки"))
+console.log(getEnterpriseByDepartment('Отдел разработки'))
 
 // 3. Написать функцию, которая будет добавлять предприятие. В качестве аргумента принимает название предприятия
   
@@ -155,23 +155,28 @@ addEnterprise('Тестировщки')
   
 const addDepartment = function(id, name, employees_count = 0) {
   const enterprise = getEnterprise(id)
-  if(typeof enterprise === "object") {
+  if(typeof enterprise === 'object') {
       enterprise.departments.push({
           id: getNewId(enterprises),
           name: name,
           employees_count: employees_count,
       })
-  } else console.log("Нет такой организации")
+  } else console.log('Нет такой организации')
 }
-addDepartment(11,"AQA", 20)
-addDepartment(11,"Ручные тестировщики", 20)
+addDepartment(11,'AQA', 20)
+addDepartment(11,'Ручные тестировщики', 20)
 console.log(getEnterprise(11))
   
 // 5. Написать функцию для редактирования названия предприятия. Принимает в качестве аргумента id предприятия и новое имя предприятия.
   
-// Пример:
-//   editEnterprise(1, "Новое название предприятия")
-  
+const editEnterprise = function (val, name) {
+  const enterprise = getEnterprise(val)
+  if (typeof enterprise === 'object') {
+      enterprise.name = name;
+  } else console.log (enterprise)
+}
+editEnterprise(11, 'QA-инженеры')
+console.log(getEnterprise(11))
   
 // 6. Написать функцию для редактирования названия отдела. Принимает в качестве аргумента id отдела и новое имя отдела.
   
